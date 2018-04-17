@@ -1,0 +1,8 @@
+https://docs.djangoproject.com/es/2.0/intro/tutorial03/
+https://docs.djangoproject.com/en/2.0/intro/tutorial04/
+https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-DATABASES
+https://docs.djangoproject.com/en/2.0/howto/windows/
+https://github.com/defccoo/GestionTalleres
+https://git-scm.com/book/es/v1/Empezando-Instalando-Git
+https://gitforwindows.org/
+https://code.visualstudio.com/docs/?dv=win
