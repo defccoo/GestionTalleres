@@ -1,0 +1,41 @@
+[
+{"type":"header","version":"4.7.9","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"talleres"},
+{"type":"table","name":"alumnos","database":"talleres","data":
+[
+{"DNI":"14","Exp":"1","Nombre":"Francisco","Ape1":"Lopez","Ape2":"Sanchis","Passwd":"fran1","curso":"1","nivel":"B","grupo":"A","activo":"0","idTaller":"1"},
+{"DNI":"15","Exp":"2","Nombre":"Pedro","Ape1":"Martinez","Ape2":null,"Passwd":"peter","curso":"2","nivel":"A","grupo":"C","activo":"0","idTaller":"2"},
+{"DNI":"25","Exp":"3","Nombre":"Manolo","Ape1":"Perez","Ape2":"Aspar","Passwd":"manu","curso":"2","nivel":"C","grupo":"B","activo":"0","idTaller":"2"},
+{"DNI":"31","Exp":"7","Nombre":"Ana","Ape1":"Bermejo","Ape2":"Beltan","Passwd":"anaber","curso":"3","nivel":"A","grupo":"B","activo":"0","idTaller":"1"},
+{"DNI":"33","Exp":"4","Nombre":"Marcos","Ape1":"Heredia","Ape2":"Buendia","Passwd":"marcs","curso":"1","nivel":"C","grupo":"A","activo":"0","idTaller":"1"},
+{"DNI":"36","Exp":"5","Nombre":"Guillermo","Ape1":"Toro","Ape2":"Fuentes","Passwd":"guille","curso":"1","nivel":"B","grupo":"B","activo":"1","idTaller":"2"},
+{"DNI":"45","Exp":"6","Nombre":"Julia","Ape1":"Sanches","Ape2":"Guarner","Passwd":"juli","curso":"2","nivel":"B","grupo":"A","activo":"0","idTaller":"2"}
+]
+}
+,{"type":"table","name":"departamentos","database":"talleres","data":
+[
+{"idDepart":"1","nombre":"Informatica"},
+{"idDepart":"2","nombre":"Musica"},
+{"idDepart":"3","nombre":"Historia"}
+]
+}
+,{"type":"table","name":"profesores","database":"talleres","data":
+[
+{"dni":"45","nombre":"Julia","apellidos":"Sanches Guarner","idDepart":"1","pass_prof":"0"},
+{"dni":"50","nombre":"Francisco","apellidos":"Lopez Sanchis","idDepart":"1","pass_prof":"0"},
+{"dni":"51","nombre":"Pedro","apellidos":"Martinez peter","idDepart":"1","pass_prof":"0"},
+{"dni":"52","nombre":"Manolo","apellidos":"Perez Aspar","idDepart":"2","pass_prof":"0"}
+]
+}
+,{"type":"table","name":"prof_taller","database":"talleres","data":
+[
+
+]
+}
+,{"type":"table","name":"taller","database":"talleres","data":
+[
+{"idTaller":"1","descrip":"TWIST & SHOUT","idDepart":"1","nivel":"ESO","curso":"2","maxAlum":"25","duracion":"50","jornada":null,"excede":null,"foto_taller":""},
+{"idTaller":"2","descrip":"COLLARES","idDepart":"1","nivel":"ESO","curso":"1","maxAlum":"30","duracion":"60","jornada":null,"excede":null,"foto_taller":""}
+]
+}
+]
