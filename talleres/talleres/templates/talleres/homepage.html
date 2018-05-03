@@ -12,8 +12,11 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  <script src="jq/jquery-3.2.1.min.js"></script> 
-  <script src="js/bootstrap.min.js"></script>
+  {% load staticfiles %}
+<script src="{% static "talleres/js/jquery-3.2.1.min.js" %}"></script>
+<script src="{% static "talleres/js/bootstrap.min.js" %}"></script>
+ <!-- <script src="jq/jquery-3.2.1.min.js"></script> -->
+ <!--  <script src="js/bootstrap.min.js"></script> -->
   <style>
   
   </style>
@@ -80,7 +83,7 @@
           </div>
         
           <div class="item">
-            <img src="images/robot_220.jpg" alt="Los Angeles" width="400" height="100">
+            <img src="static/talleres/images/robot_220.jpg" alt="Los Angeles" width="400" height="100">
             <div class="carousel-caption">
               <h3>LA</h3>
               <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
