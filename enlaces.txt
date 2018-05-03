@@ -6,3 +6,6 @@ https://github.com/defccoo/GestionTalleres
 https://git-scm.com/book/es/v1/Empezando-Instalando-Git
 https://gitforwindows.org/
 https://code.visualstudio.com/docs/?dv=win
+https://openwebinars.net/blog/tutorial-django/
+http://www.tangowithdjango.com/book17/chapters/jquery.html
+https://tutorial.djangogirls.org/es/django_start_project/

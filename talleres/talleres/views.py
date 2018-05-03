@@ -13,3 +13,6 @@ def homepage(request):
     return render(request, 'talleres/homepage.html')
         #return render_to_response('homepage.html',
         #context_instance=RequestContext(request))
+
+def acceso(request):
+    return render(request, 'talleres/login.html')
