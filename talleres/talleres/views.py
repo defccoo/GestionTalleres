@@ -5,10 +5,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-#def index(request):
+def index(request):
     
-    #return HttpResponse("recursos/Talleres/altaTaller.html")
+    return HttpResponse("Hello, world. You're at the polls index.")
 
 def homepage(request):
-        return render_to_response('homepage.html',
-        context_instance=RequestContext(request))
+    return render(request, 'talleres/homepage.html')
+        #return render_to_response('homepage.html',
+        #context_instance=RequestContext(request))

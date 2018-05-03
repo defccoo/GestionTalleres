@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
+    #'polls.apps.PollsConfig',
     'talleres.apps.TalleresConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'talleres',
+    
 ]
 
 MIDDLEWARE = [
