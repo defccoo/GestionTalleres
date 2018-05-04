@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Talleres</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'talleres/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'talleres/principal.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  {% load staticfiles %}
+<script src="{% static "talleres/js/jquery-3.2.1.min.js" %}"></script>
+<script src="{% static "talleres/js/bootstrap.min.js" %}"></script>
+ <!-- <script src="jq/jquery-3.2.1.min.js"></script> -->
+ <!--  <script src="js/bootstrap.min.js"></script> -->
+  <style>
+  
+  </style>
+</head>
+
+ 
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="#myPage">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#myPage">HOME</a></li>
+            <li><a href="#band">BAND</a></li>
+            <li><a href="#tour">TOUR</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Merchandise</a></li>
+                <li><a href="#">Extras</a></li>
+                <li><a href="#">Media</a></li> 
+              </ul>
+            </li>
+            <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+      
+    <!-- Container (The Alta Section) -->
+    <div id="band" class="container text-center">
+      <h3> {{ taller.descrip }}</h3>
+      <div class="col-sm-6 form-group">
+        Curso: <input class="form-control" id="dni" name="dni" placeholder="{{ taller.curso }}" type="text" required>
+      </div>
+      <p><em>Accede!</em></p>
+      <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <br>
+      
+    </div>
+
+        
+    <!-- Footer -->
+    <footer class="text-center">
+      <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a><br><br>
+      <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p> 
+    </footer>
+            
+    </body>
+    </html>

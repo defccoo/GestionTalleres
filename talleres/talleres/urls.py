@@ -20,8 +20,16 @@ from . import views
 urlpatterns = [
     #path('', views.index, name='index'),
     path('', views.homepage, name='homepage'),
-    path('', views.acceso, name='acceso'),
-    path('polls/', include('polls.urls')),
+    path('login/', views.acceso, name='acceso'),
+    #path('taller/mostrar', views.muestraTaller, name='muestraTaller'),
+    path('taller/listar', views.listataller, name='listataller'),
+    path('taller/alta', views.altataller, name='altataller'),
+    path('taller/crear', views.creartaller, name='creartaller'),
+
+    #Mostrar lista taller...leer todos los talleres y mostrarlos con los enlaces a /taller/mostrar/taller_id
+    path('taller/mostrar/<int:taller_id>', views.muestraTallerConID, name='muestraTallerConID'),
+    #path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
+    
 ]
 
