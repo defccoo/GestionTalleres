@@ -1,10 +1,24 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 
+from .forms import TallerForm
 # Create your views here.
 
 from django.http import HttpResponse
 
 from .models import Taller, Departamento
+
+def taller_new(request):
+    if request.method == "POST":
+        form = TallerForm(request.POST)
+        if form.is_valid():
+            taller = form.save(commit=False)
+            #post.author = request.user
+            taller.save()
+            return redirect('/listar')
+
+    else:
+        form = TallerForm()
+    return render(request, 'talleres/altataller.html', {'form': form})
 
 def index(request):
     
@@ -82,7 +96,7 @@ def creartaller(request):
 def listataller(request):
 
     #Recuperar todos los talleres
-    taller_list = Taller.objects.order_by('-curso')[:5]
+    taller_list = Taller.objects.order_by('-curso')
 
     print(taller_list)
 

@@ -20,10 +20,12 @@ from . import views
 urlpatterns = [
     #path('', views.index, name='index'),
     path('', views.homepage, name='homepage'),
+    path('principal/', views.homepage, name='homepage'),
     path('login/', views.acceso, name='acceso'),
     #path('taller/mostrar', views.muestraTaller, name='muestraTaller'),
+    path('listar/', views.listataller, name='listataller'),
     path('taller/listar', views.listataller, name='listataller'),
-    path('taller/alta', views.altataller, name='altataller'),
+    path('taller/alta', views.taller_new, name='altataller'),
     path('taller/crear', views.creartaller, name='creartaller'),
 
     #Mostrar lista taller...leer todos los talleres y mostrarlos con los enlaces a /taller/mostrar/taller_id

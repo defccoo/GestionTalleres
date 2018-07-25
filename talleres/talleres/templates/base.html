@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>{% block title %}{% endblock title%}</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'talleres/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'talleres/principal.css' %}">
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+      {% load staticfiles %}
+    <script src="{% static "talleres/js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "talleres/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "talleres/js/userValidation.js" %}"></script>
+
+     <!-- <script src="jq/jquery-3.2.1.min.js"></script> -->
+     <!--  <script src="js/bootstrap.min.js"></script> -->
+      <style>
+      
+      </style>
+    </head>
+  <body>
+
+  {% include "nav.html" %}
+
+  {% block content %}{% endblock content %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fixed text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a><br>
+    <p> &copy; Quintin Macian</p>
+    <p class="navbar-text navbar-left">Logado como  {{ request.user.username }}</p>
+    <button class="btn btn-default pull-right logout">
+        <i class="glyphicon glyphicon-log-out"></i>
+        <span>Log Out</span>
+  </button>
+  </div>
+  </footer>
+
+ {% block extrafooter %}{% endblock extrafooter %}
+ 
+  </body>
+
+  {% block scriptfiles %}{% endblock scriptfiles %}
+  
+
+</html>

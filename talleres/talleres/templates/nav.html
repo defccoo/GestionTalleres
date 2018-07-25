@@ -1,0 +1,36 @@
+{% block nav %}
+ <!-- Steps style CSS -->
+ <!--<link href="{{STATIC_URL|default:"/s/"}}css/steps.css" type="text/css" rel="stylesheet"/> -->
+
+ <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/principal/">INICIO</a></li>
+        <li><a href="#contact">CONTACTO</a></li>
+        <li><a href="#localiza">LOCALIZACION</a></li>
+        <li><a href="/login/">ACCESO</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVICIOS
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">ACTIVIDADES</a></li>
+            <li><a href="#">FOTOS</a></li>
+            <li><a href="#">CONCURSO</a></li> 
+          </ul>
+        </li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% endblock nav %}

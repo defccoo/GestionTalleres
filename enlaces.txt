@@ -9,3 +9,11 @@ https://code.visualstudio.com/docs/?dv=win
 https://openwebinars.net/blog/tutorial-django/
 http://www.tangowithdjango.com/book17/chapters/jquery.html
 https://tutorial.djangogirls.org/es/django_start_project/
+https://docs.djangoproject.com/es/2.0/intro/overview/
+https://django-bootstrap3.readthedocs.io/en/latest/
+
+Ejemplo repositorio:
+https://github.com/JJorgeDSIC/ML_PORTAL_CONCEPT
+
+ejemplo insertar imagenes een django
+https://www.youtube.com/watch?v=miaOMvHw4nw
