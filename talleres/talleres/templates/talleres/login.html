@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block title %} Login Talleres  {% endblock title%}
-
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+{% load staticfiles %}
   {% block content %}
-    
+ 
     <!-- Container (The Alta Section) -->
-    <div id="band" class="container text-center">
+    <div id="login" class="container text-center">
       <h3>ALTA USUARIO</h3>
       <p><em>Accede!</em></p>
       <p>Kale courgette salsify mustard broccoli seakale wakame potato fava bean tigernut leek celery spinach avocado cabbage celtuce rutabaga kohlrabi. Parsnip pea soko groundnut bitterleaf spring onion. Grape dulse rutabaga lentil gram kakadu plum water spinach cabbage lotus root.</p>
@@ -17,20 +19,22 @@
       <div class="row media">
           <div class="col-md-6 media-left">
             
-              <h2>Vista virtual del Taller</h2>
+              <h2>Video de un Taller</h2>
          <video width="480" height="320" controls="controls" id="myVideo">
-            <source src="talleres/media/restaurant.mp4" type="video/mp4" />
+            <source src="static/talleres/media/restaurant.mp4" type="video/mp4" />
                     Your browser does not support the video element. 
          </video>
         
          <p>Kale courgette salsify mustard broccoli seakale wakame potato fava bean tigernut leek celery spinach avocado cabbage celtuce rutabaga kohlrabi. Parsnip pea soko groundnut bitterleaf spring onion. Grape dulse rutabaga lentil gram kakadu plum water spinach cabbage lotus root.</p>
           </div>
-            <div class="col-md-6">
+            <div class="col-md-6 container">
           <div class="row">
             <div class="col-sm-6 form-group">
+              <label>Dni</label>
               <input class="form-control" id="dni" name="dni" placeholder="Dni" type="text" required>
             </div>
             <div class="col-sm-6 form-group">
+              <label>Contraseña</label>
               <input class="form-control" id="pass" name="pass" placeholder="Pass" type="password" required>
             </div>
           </div>
@@ -42,5 +46,6 @@
         </div>
       </div>
       <br>
+      </div>
       {% endblock content %}
  

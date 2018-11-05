@@ -24,7 +24,8 @@ class Alumno(models.Model):
     grupo = models.CharField(max_length=10)
     activo = models.CharField(max_length=1)
     
-class Taller(models.Model):
+
+"""class Taller(models.Model):
     idTaller = models.AutoField(primary_key=True)
     nombreT = models.CharField(max_length=50)
     descrip = models.CharField(max_length=150)
@@ -33,6 +34,23 @@ class Taller(models.Model):
     nivel = models.PositiveSmallIntegerField(choices=NIVEL, null=True)
     curso = models.IntegerField()
     maxAlum = models.IntegerField()
+    duracion = models.IntegerField()
+    jornada = models.IntegerField()
+    excede = models.IntegerField(null=True)
+    foto = models.ImageField(blank=True, null=True)
+    ESTADO = ((1, 'abierto'),(2, 'cerrado'))
+    estado = models.PositiveSmallIntegerField(choices=ESTADO, null=True)
+    idAlumnoTaller = models.ManyToManyField(Alumno, through='AlumnoTaller')
+"""
+class Taller(models.Model):
+    Numero = models.AutoField(primary_key=True)
+    NombreTaller = models.CharField(max_length=50)
+    Descripcion = models.CharField(max_length=150)
+    NumDepartamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+    NIVEL = ((1,'ESO'), (2, 'BACHILLER'), (3,'CFGM'), (4,'CFGS'), (5,'PQPI'))
+    nivel = models.PositiveSmallIntegerField(choices=NIVEL, null=True)
+    curso = models.IntegerField()
+    MaxAlumnos = models.IntegerField()
     duracion = models.IntegerField()
     jornada = models.IntegerField()
     excede = models.IntegerField(null=True)

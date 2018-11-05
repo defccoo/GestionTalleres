@@ -6,7 +6,7 @@ class TallerForm(forms.ModelForm):
 
     class Meta:
         model = Taller
-        fields = ('nombreT', 'descrip','idDepart','nivel', 'curso','maxAlum','duracion','jornada','excede','foto', 'estado')
+        fields = ('Numero', 'NombreTaller','Descripcion','NumDepartamento','nivel', 'curso','MaxAlumnos','duracion','jornada','excede','foto', 'estado')
 """
 idTaller = models.IntegerField(primary_key=True)
 nombreT = models.CharField(max_length=50)

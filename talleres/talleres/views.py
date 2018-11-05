@@ -29,8 +29,14 @@ def homepage(request):
         #return render_to_response('homepage.html',
         #context_instance=RequestContext(request))
 
+def principal(request):
+    return render(request, 'talleres/homepage.html')
+    
 def acceso(request):
     return render(request, 'talleres/login.html')
+
+def sitio(request):
+    return render(request, 'talleres/local.html')
 
 def muestraTaller(request):
 

@@ -20,8 +20,9 @@ from . import views
 urlpatterns = [
     #path('', views.index, name='index'),
     path('', views.homepage, name='homepage'),
-    path('principal/', views.homepage, name='homepage'),
+    path('principal/', views.principal, name='homepage'),
     path('login/', views.acceso, name='acceso'),
+    path('local/', views.sitio, name='sitio'),
     #path('taller/mostrar', views.muestraTaller, name='muestraTaller'),
     path('listar/', views.listataller, name='listataller'),
     path('taller/listar', views.listataller, name='listataller'),
