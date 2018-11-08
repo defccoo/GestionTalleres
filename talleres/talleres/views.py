@@ -94,7 +94,7 @@ def creartaller(request):
 
     #El departamento sera el del profesor que ha creado el taller...  
     #
-    taller = Taller(descrip=descrip, idDepart=departamento, nivel=nivel, curso=curso, maxAlum=maxAlum, duracion=duracion, jornada=jornada, excede=excede )
+    taller = Taller(descrip=Descripcion, idDepart=departamento, nivel=nivel, curso=curso, maxAlum=maxAlum, duracion=duracion, jornada=jornada, excede=excede )
     taller.save()
     return listataller(request)
     #...
@@ -113,9 +113,9 @@ def listataller(request):
 
 def muestraTallerConID(request, taller_id):
 
-    taller = get_object_or_404(Taller, pk=taller_id)
+    taller = get_object_or_404(Taller, pk=Numero)
 
-    print(taller.descrip)
+    print(taller.Descripcion)
 
     return render(request, 'talleres/taller.html',
     {
