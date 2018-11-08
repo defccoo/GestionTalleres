@@ -31,7 +31,7 @@ def homepage(request):
 
 def principal(request):
     return render(request, 'talleres/homepage.html')
-    
+
 def acceso(request):
     return render(request, 'talleres/login.html')
 
@@ -62,7 +62,7 @@ def altataller(request):
 def creartaller(request):
 
 
-    print(request.POST.get('descrip', ''))
+    print(request.POST.get('Descripcion', ''))
 
 
     """
@@ -80,10 +80,10 @@ def creartaller(request):
     """
 
     print("Hello")
-    descrip = request.POST.get('descrip', '')
+    Descricion = request.POST.get('Descripcion', '')
     print("Revisar ESTO!!!")
-    idDepart = 1
-    departamento = get_object_or_404(Departamento, pk=idDepart)
+    Numero = 1
+    departamento = get_object_or_404(Departamento, pk=Numero)
     nivel = (request.POST.get('nivel', ''))
     curso = int(request.POST.get('curso', ''))
     maxAlum = int(request.POST.get('maxAlum', ''))
