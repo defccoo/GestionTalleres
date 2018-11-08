@@ -112,7 +112,7 @@
               <img src="../static/talleres/images/220px-Origami_Grulla.jpg" alt="Paris" width="400" height="300">
               <p><strong>Origami</strong></p>
               <p>Friday 27 November 2018</p>
-              <button class="btn" data-toggle="modal" data-target="#myModal">Inscribirse</button>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
             </div>
           </div>
           <div class="col-sm-4">
@@ -120,7 +120,7 @@
               <img src="../static/talleres/images/futbol_220.jpg" alt="New York" width="400" height="300">
               <p><strong>Campeonato Futbol</strong></p>
               <p>Saturday 28 November 2018</p>
-              <button class="btn" data-toggle="modal" data-target="#myModal">Inscribirse</button>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
             </div>
           </div>
           <div class="col-sm-4">
@@ -128,7 +128,7 @@
               <img src="../static/talleres/images/robot_220.jpg" alt="San Francisco" width="400" height="300">
               <p><strong>Robotica</strong></p>
               <p>Sunday 29 November 2018</p>
-              <button class="btn" data-toggle="modal" data-target="#myModal">Inscribirse</button>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
             </div>
           </div>
         </div>
@@ -137,7 +137,8 @@
       <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-        
+
+          
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
@@ -145,18 +146,23 @@
               <h4><span class="glyphicon glyphicon-lock"></span> Inscripcion</h4>
             </div>
             <div class="modal-body">
-              <form role="form">
+              <form role="form" action="{% url 'homepage' %}" method="post">
+                {% csrf_token %}    
+                 <div class="form-group">
+                  <label for="usrname"><span class="glyphicon glyphicon-user"></span> Dni</label>
+                  <input class="form-control" id="dni" name="dni" placeholder="Dni" type="text" required>
+                </div>
                 <div class="form-group">
                   <label for="psw"><span class="glyphicon glyphicon-shopping-cart"></span> Contraseña</label>
-                  <input type="number" class="form-control" id="psw" placeholder="Pass">
+                  <input class="form-control" id="pass" name="pass" placeholder="Pass" type="password" required>
                 </div>
-                <div class="form-group">
-                  <label for="usrname"><span class="glyphicon glyphicon-user"></span> Dni</label>
-                  <input type="text" class="form-control" id="usrname" placeholder="Dni">
-                </div>
+               
+                 <input class="btn pull-right" type="submit" value="Accede">
+
+                    <!--         
                   <button type="submit" class="btn btn-block">Acceder 
                     <span class="glyphicon glyphicon-ok"></span>
-                  </button>
+                  </button> -->
               </form>
             </div>
             <div class="modal-footer">

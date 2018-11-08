@@ -39,7 +39,18 @@ def principal(request):
 
     if user is not None:
         # A backend authenticated the credentials
+
         login(request, user)
+
+        alumno=Alumno.objects.filter(dniA=request.user)
+
+        print(alumno)
+
+        if len(alumno) == 0:
+            profesor=Profesor.objects.filter(dniP=request.user)
+            return redirect('/taller/alta')
+        else:
+            return render(request, 'talleres/homepage.html')
         print("Autenticado")
     else:
         print("No autenticado")
@@ -155,7 +166,8 @@ def inscribirse(request):
     return render(request, 'talleres/taller.html',
     {
         "taller" : taller,
-        "inscrito" : inscrito
+        "inscrito" : inscrito,
+        "alumno" : True
     })
 
 
@@ -163,18 +175,20 @@ def muestraTallerConID(request, taller_id):
 
     taller = get_object_or_404(Taller, pk=taller_id)
 
-    print(dir(request.user))
+    alumnos=Alumno.objects.filter(dniA=request.user)
 
-    if request.user.is_anonymous:
+    if request.user.is_anonymous or len(alumnos) == 0:
 
         return render(request, 'talleres/taller.html',
         {
-            "taller" : taller
+            "taller" : taller,
+            "alumno": False
+
         })
 
     else:
 
-        alumno=Alumno.objects.filter(dniA=request.user)[0]
+        alumno=alumnos[0]
 
         lista_alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller_id) 
 
@@ -189,5 +203,6 @@ def muestraTallerConID(request, taller_id):
         return render(request, 'talleres/taller.html',
         {
             "taller" : taller,
-            "inscrito" : inscrito
+            "inscrito" : inscrito,
+            "alumno": True
         })
