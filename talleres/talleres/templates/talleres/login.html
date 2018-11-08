@@ -21,14 +21,28 @@
             
               <h2>Video de un Taller</h2>
          <video width="480" height="320" controls="controls" id="myVideo">
-            <source src="static/talleres/media/restaurant.mp4" type="video/mp4" />
+            <source src="../static/talleres/media/restaurant.mp4" type="video/mp4" />
                     Your browser does not support the video element. 
          </video>
         
          <p>Kale courgette salsify mustard broccoli seakale wakame potato fava bean tigernut leek celery spinach avocado cabbage celtuce rutabaga kohlrabi. Parsnip pea soko groundnut bitterleaf spring onion. Grape dulse rutabaga lentil gram kakadu plum water spinach cabbage lotus root.</p>
           </div>
             <div class="col-md-6 container">
-          <div class="row">
+              <div class="col-sm-6 form-group">
+            <form action="{% url 'homepage' %}" method="post">
+            {% csrf_token %}                        
+            <label>Dni</label>
+            <input class="form-control" id="dni" name="dni" placeholder="Dni" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+
+            <label>Password</label>
+            <input class="form-control" id="pass" name="pass" placeholder="Pass" type="password" required>
+            <input class="btn pull-right" type="submit" value="Accede">
+            </div>
+
+            </form>
+<!--           <div class="row">
             <div class="col-sm-6 form-group">
               <label>Dni</label>
               <input class="form-control" id="dni" name="dni" placeholder="Dni" type="text" required>
@@ -37,11 +51,8 @@
               <label>Contraseña</label>
               <input class="form-control" id="pass" name="pass" placeholder="Pass" type="password" required>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 form-group">
-              <button class="btn pull-right" type="submit" onclick="valida_envia()">Acceso</button>
-            </div>
+          </div> -->
+
           </div>
         </div>
       </div>
