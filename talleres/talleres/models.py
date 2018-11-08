@@ -62,7 +62,7 @@ class Taller(models.Model):
 class AlumnoTaller(models.Model):
     idAlumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
     idTaller = models.ForeignKey(Taller, on_delete=models.CASCADE)
-    valora = models.IntegerField()
+    valora = models.IntegerField(null=True)
     opinion = models.CharField(max_length=150)
    
     

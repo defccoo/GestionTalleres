@@ -27,3 +27,15 @@ for alumno in alumnos:
 	user = User.objects.create_user(alumno.dniA, '{:}@ejemplo.com'.format(alumno.nombre), '1234')
 
 ##### Crear talleres y lo que falte
+
+for i in range(10):
+	Taller.objects.create(Numero=format(i, '04d'), NombreTaller="Taller{:}".format(i, '03d'), curso=1, MaxAlumnos=10, Descripcion="Taller ...{:}".format(i, '03d'), duracion=5, jornada=1, NumDepartamento=depart[0])
+
+talleres=Taller.objects.all()
+
+
+for i in range(10):
+	if i < 5:
+		AlumnoTaller.objects.create(idAlumno=alumnos[i], idTaller=talleres[0])
+	else:
+		AlumnoTaller.objects.create(idAlumno=alumnos[i], idTaller=talleres[1])

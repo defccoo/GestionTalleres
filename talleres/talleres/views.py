@@ -6,7 +6,7 @@ from .forms import TallerForm
 
 from django.http import HttpResponse
 
-from .models import Taller, Departamento
+from .models import Taller, Departamento, Alumno, AlumnoTaller,Profesor,ProfesorTaller
 
 def taller_new(request):
     if request.method == "POST":
@@ -131,11 +131,25 @@ def listataller(request):
 
 def muestraTallerConID(request, taller_id):
 
-    taller = get_object_or_404(Taller, pk=Numero)
+    taller = get_object_or_404(Taller, pk=taller_id)
+
+    print(request.user)
+
+    alumno=Alumno.objects.filter(dniA=request.user)[0]
+
+    lista_alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller_id) 
+
+    inscrito = False
+    if lista_alumnotaller:
+        inscrito = True
+
+
+    print(lista_alumnotaller)
 
     print(taller.Descripcion)
 
     return render(request, 'talleres/taller.html',
     {
-        "taller" : taller
+        "taller" : taller,
+        "inscrito" : inscrito
     })
