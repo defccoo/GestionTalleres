@@ -42,7 +42,7 @@ def muestraTaller(request):
 
     taller = get_object_or_404(Taller, pk=1)
 
-    print(taller.descrip)
+    print(taller.Descripcion)
 
     return render(request, 'talleres/login.html',
     {
