@@ -46,12 +46,22 @@
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br>
     <p> &copy; Quintin Macian</p>
-    {% if request.user.username %}
-      <p class="navbar-text navbar-left">Logado como  {{ request.user.username }}</p>
-      <button class="btn btn-default pull-right logout">
+
+    {% if user.username %}
+      <p class="navbar-text navbar-left">Logado como  {{ user.username }}</p>
+      
+      <!-- <button class="btn btn-default pull-right logout">
       <i class="glyphicon glyphicon-log-out"></i>
       <span>Log Out</span>
-      </button>
+      </button> -->
+
+      <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %} 
+      <button class="btn btn-default pull-right logout">
+      <i class="glyphicon glyphicon-log-out"></i>                       
+      <input type="submit" value="Log Out">
+      </button> 
+      </form>
     {% endif %}
 
   </div>

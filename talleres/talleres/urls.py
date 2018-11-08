@@ -23,6 +23,8 @@ urlpatterns = [
     path('principal/', views.principal, name='homepage'),
     path('login/', views.acceso, name='acceso'),
     path('local/', views.sitio, name='sitio'),
+    path('logout/', views.logout_view, name='logout'),
+
     #path('taller/mostrar', views.muestraTaller, name='muestraTaller'),
     path('listar/', views.listataller, name='listataller'),
     path('taller/listar', views.listataller, name='listataller'),

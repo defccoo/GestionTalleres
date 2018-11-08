@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.contrib.auth import authenticate, login, logout
 
 from .forms import TallerForm
 # Create your views here.
@@ -30,6 +31,23 @@ def homepage(request):
         #context_instance=RequestContext(request))
 
 def principal(request):
+
+    ##Do login
+    username = request.POST['dni']
+    password = request.POST['pass']
+    user = authenticate(username=username, password=password)
+
+    if user is not None:
+        # A backend authenticated the credentials
+        login(request, user)
+        print("Autenticado")
+    else:
+        print("No autenticado")
+        # No backend authenticated the credentials
+    return render(request, 'talleres/homepage.html')
+
+def logout_view(request):
+    logout(request)
     return render(request, 'talleres/homepage.html')
 
 def acceso(request):
