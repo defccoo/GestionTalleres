@@ -45,11 +45,14 @@
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br>
     <p> &copy; Quintin Macian</p>
-    <p class="navbar-text navbar-left">Logado como  {{ request.user.username }}</p>
-    <button class="btn btn-default pull-right logout">
-        <i class="glyphicon glyphicon-log-out"></i>
-        <span>Log Out</span>
-  </button>
+    {% if request.user.username %}
+      <p class="navbar-text navbar-left">Logado como  {{ request.user.username }}</p>
+      <button class="btn btn-default pull-right logout">
+      <i class="glyphicon glyphicon-log-out"></i>
+      <span>Log Out</span>
+      </button>
+    {% endif %}
+    
   </div>
   </footer>
 
