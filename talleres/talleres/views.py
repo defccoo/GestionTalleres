@@ -67,15 +67,6 @@ def muestraTaller(request):
         "taller" : taller
     })
 
-def altataller(request):
-
-    depart_list = Departamento.objects.order_by('-nombre')
-
-    return render(request, 'talleres/altataller.html',
-    {
-        "depart_list" : depart_list
-    })
-
 
 def creartaller(request):
 
@@ -129,27 +120,74 @@ def listataller(request):
         "talleres_list" : taller_list,
     })
 
-def muestraTallerConID(request, taller_id):
 
-    taller = get_object_or_404(Taller, pk=taller_id)
 
-    print(request.user)
+def listataller(request):
+
+    #Recuperar todos los talleres
+    taller_list = Taller.objects.order_by('-curso')
+
+    print(taller_list)
+
+    return render(request, 'talleres/listaTaller.html',
+    {
+        "talleres_list" : taller_list,
+    })
+
+
+def inscribirse(request):
+
+    taller_id = request.POST["idTaller"]
+
+    taller=Taller.objects.filter(Numero=taller_id)[0]
 
     alumno=Alumno.objects.filter(dniA=request.user)[0]
 
-    lista_alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller_id) 
+    alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller) 
 
     inscrito = False
-    if lista_alumnotaller:
+    if alumnotaller:
+        alumnotaller.delete()
+    else:
+        alumnotaller=AlumnoTaller.objects.create(idAlumno=alumno, idTaller=taller) 
         inscrito = True
-
-
-    print(lista_alumnotaller)
-
-    print(taller.Descripcion)
 
     return render(request, 'talleres/taller.html',
     {
         "taller" : taller,
         "inscrito" : inscrito
     })
+
+
+def muestraTallerConID(request, taller_id):
+
+    taller = get_object_or_404(Taller, pk=taller_id)
+
+    print(dir(request.user))
+
+    if request.user.is_anonymous:
+
+        return render(request, 'talleres/taller.html',
+        {
+            "taller" : taller
+        })
+
+    else:
+
+        alumno=Alumno.objects.filter(dniA=request.user)[0]
+
+        lista_alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller_id) 
+
+        inscrito = False
+        if lista_alumnotaller:
+            inscrito = True
+
+        print(lista_alumnotaller)
+
+        print(taller.Descripcion)
+
+        return render(request, 'talleres/taller.html',
+        {
+            "taller" : taller,
+            "inscrito" : inscrito
+        })
