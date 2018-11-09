@@ -65,8 +65,6 @@ def doLogin(request):
 
         alumno=Alumno.objects.filter(dniA=request.user)
 
-        print(alumno)
-
         if len(alumno) == 0:
             profesor=Profesor.objects.filter(dniP=request.user)
             return redirect('/taller/alta')
@@ -109,8 +107,10 @@ def homepage(request):
 
 
 def taller_new(request):
+
     if request.method == "POST":
-        form = TallerForm(request.POST)
+        print(request.POST)
+        form = TallerForm(request.POST, request.FILES or None)
         if form.is_valid():
             taller = form.save(commit=False)
             #post.author = request.user
