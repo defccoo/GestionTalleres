@@ -69,7 +69,7 @@ def doLogin(request):
 
         if len(alumno) == 0:
             profesor=Profesor.objects.filter(dniP=request.user)
-            return redirect('homepage')
+            return redirect('/taller/alta')
         else:
             return redirect('homepage')
 
