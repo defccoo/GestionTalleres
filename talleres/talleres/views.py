@@ -8,29 +8,50 @@ from django.http import HttpResponse
 
 from .models import Taller, Departamento, Alumno, AlumnoTaller,Profesor,ProfesorTaller
 
-def taller_new(request):
-    if request.method == "POST":
-        form = TallerForm(request.POST)
-        if form.is_valid():
-            taller = form.save(commit=False)
-            #post.author = request.user
-            taller.save()
-            return redirect('/listar')
+def getAlumnoByID(dniA):
 
+    alumnos = Alumno.objects.filter(dniA=dniA)
+
+    if len(alumnos) != 0:
+        return alumnos[0]
     else:
-        form = TallerForm()
-    return render(request, 'talleres/altataller.html', {'form': form})
+        return None 
 
-def index(request):
+def getAllTalleres():
+    return Taller.objects.all()
+
+def getTalleresInscritoByAlumnoID(dniA):
+    alumno = getAlumnoByID(dniA)
+
+    if alumno == None:
+        return []
+    else:
+        alumnoTalleres = AlumnoTaller.objects.filter(idAlumno=alumno) 
+        talleres = []
+        for alumnoTaller in alumnoTalleres:
+            #print(dir(alumnoTaller))
+            #print(alumnoTaller.idTaller)
+            #taller=alumnoTaller.idTaller
+            talleres.append(alumnoTaller.idTaller)
+            #print(taller)
+        return talleres
+
+def getTalleresInscrito(alumno):
+    return AlumnoTaller.objects.filter(idAlumno=alumno) 
+
+def getTalleresInscritoByTallerID(alumno, taller_id):
+
+    taller=Taller.objects.filter(Nombre=taller_id)
+    return AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller) 
+
+def isAlumno(dniA):
     
-    return HttpResponse("Hello, world. You're at the polls index.")
+    alumno=Alumno.objects.filter(dniA=dniA)
 
-def homepage(request):
-    return render(request, 'talleres/homepage.html')
-        #return render_to_response('homepage.html',
-        #context_instance=RequestContext(request))
+    return len(alumno) != 0
 
-def principal(request):
+
+def doLogin(request):
 
     ##Do login
     username = request.POST['dni']
@@ -48,14 +69,62 @@ def principal(request):
 
         if len(alumno) == 0:
             profesor=Profesor.objects.filter(dniP=request.user)
-            return redirect('/taller/alta')
+            return redirect('homepage')
         else:
-            return render(request, 'talleres/homepage.html')
+            return redirect('homepage')
+
         print("Autenticado")
     else:
         print("No autenticado")
         # No backend authenticated the credentials
     return render(request, 'talleres/homepage.html')
+
+def homepage(request):
+
+    #anonymous user, plain landpage
+    if request.user.is_anonymous:
+        return render(request, 'talleres/homepage.html')
+    else:
+
+        dniA = request.user
+
+        if isAlumno(dniA):
+
+            alumno=getAlumnoByID(dniA)
+
+            talleres=getTalleresInscritoByAlumnoID(dniA)
+
+            return render(request, 'talleres/homepage.html',
+                {
+                    "alumno" : alumno,
+                    "talleres": talleres[:3]
+                })
+
+        else:
+
+            return render(request, 'talleres/homepage.html')
+
+        #return render_to_response('homepage.html',
+        #context_instance=RequestContext(request))
+
+
+def taller_new(request):
+    if request.method == "POST":
+        form = TallerForm(request.POST)
+        if form.is_valid():
+            taller = form.save(commit=False)
+            #post.author = request.user
+            taller.save()
+            return redirect('/listar')
+
+    else:
+        form = TallerForm()
+    return render(request, 'talleres/altataller.html', {'form': form})
+
+def index(request):
+    
+    return HttpResponse("Hello, world. You're at the polls index.")
+
 
 def logout_view(request):
     logout(request)

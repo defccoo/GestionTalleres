@@ -28,10 +28,35 @@ for alumno in alumnos:
 
 ##### Crear talleres y lo que falte
 
-for i in range(10):
+Taller.objects.create(
+	Numero=format(0, '04d'), 
+	NombreTaller="Taller de robótica", 
+	curso=1, 
+	MaxAlumnos=10, 
+	Descripcion="En este taller se verán cosas de robótica", 
+	duracion=5, 
+	jornada=1, 
+	foto="/media/robot_220.jpg",
+	NumDepartamento=depart[0])
+
+Taller.objects.create(
+	Numero=format(1, '04d'), 
+	NombreTaller="Taller de fútbol", 
+	curso=1, 
+	MaxAlumnos=10, 
+	Descripcion="En este taller se verán cosas de fútbol", 
+	duracion=5, 
+	jornada=1, 
+	foto="/media/futbol_220.jpg",
+	NumDepartamento=depart[0])
+
+for i in range(2,10):
 	Taller.objects.create(Numero=format(i, '04d'), NombreTaller="Taller{:}".format(i, '03d'), curso=1, MaxAlumnos=10, Descripcion="Taller ...{:}".format(i, '03d'), duracion=5, jornada=1, NumDepartamento=depart[0])
 
 talleres=Taller.objects.all()
+
+
+
 
 
 for i in range(10):

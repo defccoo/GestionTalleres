@@ -6,12 +6,12 @@
       
     <!-- Container (The Alta Section) -->
     <div id="band" class="container text-center">
-      <h3> {{ taller.Descripcion }}</h3>
+      <h3> {{ taller.NombreTaller }}</h3>
       <div class="col-sm-6 form-group">
         Curso: <input class="form-control" id="dni" name="dni" placeholder="{{ taller.curso }}" type="text" required>
       </div>
       <p><em>Accede!</em></p>
-      <p>Kale courgette salsify mustard broccoli seakale wakame potato fava bean tigernut leek celery spinach avocado cabbage celtuce rutabaga kohlrabi. Parsnip pea soko groundnut bitterleaf spring onion. Grape dulse rutabaga lentil gram kakadu plum water spinach cabbage lotus root.</p>
+      <p>{{ taller.Descripcion }}</p>
       <br>
 
        {% if alumno%}

@@ -107,7 +107,32 @@
         </ul>
         
         <div class="row text-center">
-          <div class="col-sm-4">
+
+          {% if alumno %}
+
+          {% for taller in talleres %}
+
+           <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="media/{{ taller.foto }}" alt="New York" width="400" height="300">
+              <p><strong>{{ taller.NombreTaller }}</strong></p>
+              <p>{{ taller.Descripcion }}</p>
+              <a href="/taller/mostrar/{{ taller.Numero }}"> Mas info </a>
+              <!--<button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>-->
+              <form action="{% url 'inscribir' %}" method="post">
+              {% csrf_token %}        
+                <input type="hidden" id="idTaller" name="idTaller" value="{{ taller.Numero }}">    
+                <input class="btn pull-right" type="submit" value="Dar de baja">
+              </form>
+            </div>
+          </div>
+
+          {% endfor %}
+
+
+           {% else %} 
+
+        <div class="col-sm-4">
             <div class="thumbnail">
               <img src="../static/talleres/images/220px-Origami_Grulla.jpg" alt="Paris" width="400" height="300">
               <p><strong>Origami</strong></p>
@@ -133,6 +158,62 @@
           </div>
         </div>
       </div>
+           {% endif %}
+
+<!-- 
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="../static/talleres/images/220px-Origami_Grulla.jpg" alt="Paris" width="400" height="300">
+              <p><strong>Origami</strong></p>
+              <p>Friday 27 November 2018</p>
+
+         {% if alumno %}
+
+            {% if inscrito %}
+
+              <form action="{% url 'inscribir' %}" method="post">
+              {% csrf_token %}        
+              <input type="hidden" id="idTaller" name="idTaller" value="0">    
+              <input class="btn pull-right" type="submit" value="Dar de baja">
+              </form>
+
+            {% else %} 
+
+            <form action="{% url 'inscribir' %}" method="post">
+            {% csrf_token %}   
+            <input type="hidden" id="idTaller" name="idTaller" value="0">
+            <input class="btn pull-right" type="submit" value="Inscribirse">
+            </form>
+
+            {% endif %}
+         
+          {% else %}
+
+              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+
+          {% endif %}
+
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="../static/talleres/images/futbol_220.jpg" alt="New York" width="400" height="300">
+              <p><strong>Campeonato Futbol</strong></p>
+              <p>Saturday 28 November 2018</p>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="../static/talleres/images/robot_220.jpg" alt="San Francisco" width="400" height="300">
+              <p><strong>Robotica</strong></p>
+              <p>Sunday 29 November 2018</p>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+            </div>
+          </div>
+           -->
+        </div>
+      </div>
       
       <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
@@ -146,7 +227,8 @@
               <h4><span class="glyphicon glyphicon-lock"></span> Inscripcion</h4>
             </div>
             <div class="modal-body">
-              <form role="form" action="{% url 'homepage' %}" method="post">
+
+              <form role="form" action="{% url 'login' %}" method="post">
                 {% csrf_token %}    
                  <div class="form-group">
                   <label for="usrname"><span class="glyphicon glyphicon-user"></span> Dni</label>

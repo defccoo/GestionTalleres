@@ -54,7 +54,7 @@ class Taller(models.Model):
     duracion = models.IntegerField()
     jornada = models.IntegerField()
     excede = models.IntegerField(null=True)
-    foto = models.ImageField(blank=True, null=True)
+    foto = models.ImageField(blank=True, null=True, upload_to = 'media/', default='/media/default.jpg')
     ESTADO = ((1, 'abierto'),(2, 'cerrado'))
     estado = models.PositiveSmallIntegerField(choices=ESTADO, null=True)
     idAlumnoTaller = models.ManyToManyField(Alumno, through='AlumnoTaller')
