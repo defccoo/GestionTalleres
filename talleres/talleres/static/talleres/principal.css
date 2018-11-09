@@ -10,7 +10,7 @@ body {
   }
   .container {
       margin: 3px;
-      padding: 80px 120px;
+      padding: 80px 80px; 
   }
   .person {
       border: 10px solid transparent;

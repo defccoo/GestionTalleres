@@ -12,11 +12,11 @@
         <ul>
          <!--  <li><a href="#myPage">HOME</a></li> -->
          {% for taller in talleres_list %}
-            <li><a href="/taller/mostrar/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a></li>
+            <li><a href="/taller/mostrar/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a> <img src='{{ taller.foto }}'></li>
          {% endfor %}
        </ul>
-      </div>
-      
+            </div>
+
       
     </div>
 
