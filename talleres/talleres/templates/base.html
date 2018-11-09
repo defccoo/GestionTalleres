@@ -42,18 +42,18 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="row">
-    <div class="col-md-4">
+    <div class="container-fixed text-center col-md-6 col-md-push-3 col-xs-12">
+      <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            </a><br>
+            <p> &copy; Quintin Macian</p>
+            </div>
+    <div class="col-md-3 col-md-pull-6 col-xs-6">
     {% if user.username %}
       <p class="navbar-text navbar-left">Logado como  {{ user.username }}</p>
       
     </div>
-    <div class="container-fixed text-center col-md-4">
-        <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-          <span class="glyphicon glyphicon-chevron-up"></span>
-        </a><br>
-        <p> &copy; Quintin Macian</p>
-        </div>
-    <div class="col-md-4">
+    <div class="col-md-3 col-xs-6">
       <form action="{% url 'logout' %}" method="post">
       {% csrf_token %} 
      <!-- <button class="btn btn-default pull-right logout">
