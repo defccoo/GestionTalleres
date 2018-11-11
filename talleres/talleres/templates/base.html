@@ -41,30 +41,34 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container-fixed text-center">
-    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a><br>
-    <p> &copy; Quintin Macian</p>
-
+    <div class="row">
+    <div class="container-fixed text-center col-md-6 col-md-push-3 col-xs-12">
+      <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            </a><br>
+            <p> &copy; Quintin Macian</p>
+            </div>
+    <div class="col-md-3 col-md-pull-6 col-xs-6">
     {% if user.username %}
       <p class="navbar-text navbar-left">Logado como  {{ user.username }}</p>
       
-      <!-- <button class="btn btn-default pull-right logout">
-      <i class="glyphicon glyphicon-log-out"></i>
-      <span>Log Out</span>
-      </button> -->
-
+    </div>
+    <div class="col-md-3 col-xs-6">
       <form action="{% url 'logout' %}" method="post">
       {% csrf_token %} 
-      <button class="btn btn-default pull-right logout">
+     <!-- <button class="btn btn-default pull-right logout">
       <i class="glyphicon glyphicon-log-out"></i>                       
       <input type="submit" value="Log Out">
-      </button> 
+      </button> -->
+      <button type="submit" class="btn pull-right">Log out 
+          <span class="glyphicon glyphicon-log-out"></span>
+        </button>
       </form>
+      </div>
     {% endif %}
 
   </div>
+
   </footer>
 
  {% block extrafooter %}{% endblock extrafooter %}

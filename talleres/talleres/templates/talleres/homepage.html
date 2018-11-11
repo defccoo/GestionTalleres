@@ -3,7 +3,7 @@
 {% block title %} Bootstrap Talleres  {% endblock title%}
 
   {% block content %}
-
+  <div id="myPage">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -49,9 +49,9 @@
           <span class="sr-only">Next</span>
         </a>
     </div>
-
+  </div>
     <!-- Container (The Band Section) -->
-    <div id="band" class="container text-center">
+    <div id="#demo" class="container text-center">
       <h3>BIENVENIDOS</h3>
       <p><em>We love WORKING!</em></p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -86,7 +86,7 @@
           <a href="#demo3" data-toggle="collapse">
             <img src="../static/talleres/images/futbol_220.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
           </a>
-          <div id="demo3" class="collapse">
+          <div id="#demo" class="collapse">
             <p>Futbol</p>
             <p>Futbol 7</p>
             <p>Eliminatoria</p>
@@ -96,7 +96,7 @@
     </div>
     
     <!-- Container (Talleres Section) -->
-    <div id="tour" class="bg-1">
+    <div id="#demo" class="bg-1">
       <div class="container">
         <h3 class="text-center">PROXIMOS TALLERES</h3>
         <p class="text-center">Lorem ipsum we'll play you some music.<br> Recuerda Inscribirte pronto!</p>
@@ -114,7 +114,7 @@
 
            <div class="col-sm-4">
             <div class="thumbnail">
-              <img src="media/{{ taller.foto }}" alt="New York" width="400" height="300">
+              <img src="media/{{ taller.foto }}" alt="foto Taller" width="400" height="300">
               <p><strong>{{ taller.NombreTaller }}</strong></p>
               <p>{{ taller.Descripcion }}</p>
               <a href="/taller/mostrar/{{ taller.Numero }}"> Mas info </a>
