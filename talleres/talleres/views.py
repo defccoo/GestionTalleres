@@ -8,6 +8,17 @@ from django.http import HttpResponse
 
 from .models import Taller, Departamento, Alumno, AlumnoTaller,Profesor,ProfesorTaller
 
+from django.views.generic import UpdateView
+
+
+class TallerUpdateView(UpdateView):
+
+    # or simply specify the Model
+    model = Taller
+    fields = ('Numero', 'NombreTaller','Descripcion','NumDepartamento','nivel', 'curso','MaxAlumnos','duracion','jornada','excede','foto', 'estado')
+    template_name_suffix = "_update_form"
+
+
 def getAlumnoByID(dniA):
 
     alumnos = Alumno.objects.filter(dniA=dniA)

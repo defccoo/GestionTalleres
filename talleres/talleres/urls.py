@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import *
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
@@ -37,6 +38,7 @@ urlpatterns = [
     #Mostrar lista taller...leer todos los talleres y mostrarlos con los enlaces a /taller/mostrar/taller_id
     path('taller/mostrar/<int:taller_id>', views.muestraTallerConID, name='muestraTallerConID'),
     #path('polls/', include('polls.urls')),
+    url('^taller/update/(?P<pk>[\w-]+)$', views.TallerUpdateView.as_view(), name='taller_update'),
     path('admin/', admin.site.urls),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

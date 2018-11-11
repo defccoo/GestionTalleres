@@ -5,11 +5,15 @@ from django.forms.utils import from_current_timezone, to_current_timezone
 from django.utils import formats
 from django.utils.dateparse import parse_duration
 from django.utils.duration import duration_string
+from django.urls import reverse
 
 
 class Departamento(models.Model):
     idDepart = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.nombre
 
 
 class Alumno(models.Model):
@@ -23,6 +27,9 @@ class Alumno(models.Model):
     nivel = models.CharField(max_length=50)
     grupo = models.CharField(max_length=10)
     activo = models.CharField(max_length=1)
+
+    def __str__(self):
+        return self.nombre
     
 
 """class Taller(models.Model):
@@ -59,13 +66,19 @@ class Taller(models.Model):
     estado = models.PositiveSmallIntegerField(choices=ESTADO, null=True)
     idAlumnoTaller = models.ManyToManyField(Alumno, through='AlumnoTaller')
 
+    def get_absolute_url(self):
+        return reverse('taller_update', kwargs={'pk': self.Numero})
+
+
+    def __str__(self):
+        return self.NombreTaller
+
 class AlumnoTaller(models.Model):
     idAlumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
     idTaller = models.ForeignKey(Taller, on_delete=models.CASCADE)
     valora = models.IntegerField(null=True)
     opinion = models.CharField(max_length=150)
-   
-    
+
 
 class Profesor(models.Model):
     dniP = models.CharField(primary_key=True, max_length=8)
@@ -74,6 +87,11 @@ class Profesor(models.Model):
     ape2 = models.CharField(max_length=50)
     passwd = models.CharField(max_length=10)
     idDepart = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombre
+   
+    
 
 class ProfesorTaller(models.Model):
     dniP = models.ForeignKey(Profesor, on_delete=models.CASCADE)
