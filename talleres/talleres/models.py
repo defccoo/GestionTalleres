@@ -49,6 +49,18 @@ class Alumno(models.Model):
     estado = models.PositiveSmallIntegerField(choices=ESTADO, null=True)
     idAlumnoTaller = models.ManyToManyField(Alumno, through='AlumnoTaller')
 """
+
+class Profesor(models.Model):
+    dniP = models.CharField(primary_key=True, max_length=8)
+    nombre = models.CharField(max_length=50)
+    ape1 = models.CharField(max_length=50)
+    ape2 = models.CharField(max_length=50)
+    passwd = models.CharField(max_length=10)
+    idDepart = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombre
+   
 class Taller(models.Model):
     Numero = models.AutoField(primary_key=True)
     NombreTaller = models.CharField(max_length=50)
@@ -65,6 +77,8 @@ class Taller(models.Model):
     ESTADO = ((1, 'abierto'),(2, 'cerrado'))
     estado = models.PositiveSmallIntegerField(choices=ESTADO, null=True)
     idAlumnoTaller = models.ManyToManyField(Alumno, through='AlumnoTaller')
+    idProfesorTaller = models.ManyToManyField(Profesor, through='ProfesorTaller')
+
 
     def get_absolute_url(self):
         return reverse('taller_update', kwargs={'pk': self.Numero})
@@ -80,25 +94,14 @@ class AlumnoTaller(models.Model):
     opinion = models.CharField(max_length=150)
 
 
-class Profesor(models.Model):
-    dniP = models.CharField(primary_key=True, max_length=8)
-    nombre = models.CharField(max_length=50)
-    ape1 = models.CharField(max_length=50)
-    ape2 = models.CharField(max_length=50)
-    passwd = models.CharField(max_length=10)
-    idDepart = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nombre
-   
-    
 
 class ProfesorTaller(models.Model):
-    dniP = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+    idProfesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
     idTaller = models.ForeignKey(Taller, on_delete=models.CASCADE)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
-    date_start = models.DateTimeField('Dia Inicio')
-    date_end = models.DateTimeField('Dia Fin')
+    date_start = models.DateTimeField('Dia Inicio', null=True)
+    date_end = models.DateTimeField('Dia Fin', null=True)
     hinicio = models.IntegerField(default=0)
     hfin = models.IntegerField(default=0)
+
   

@@ -64,3 +64,6 @@ for i in range(10):
 		AlumnoTaller.objects.create(idAlumno=alumnos[i], idTaller=talleres[0])
 	else:
 		AlumnoTaller.objects.create(idAlumno=alumnos[i], idTaller=talleres[1])
+
+for i in range(5):
+	ProfesorTaller.objects.create(idProfesor=profesores[i], idTaller=talleres[i])

@@ -28,6 +28,16 @@ def getAlumnoByID(dniA):
     else:
         return None 
 
+
+def getProfesorByID(dniP):
+
+    profesores = Profesor.objects.filter(dniP=dniP)
+
+    if len(profesores) != 0:
+        return profesores[0]
+    else:
+        return None 
+
 def getAllTalleres():
     return Taller.objects.all()
 
@@ -47,6 +57,23 @@ def getTalleresInscritoByAlumnoID(dniA):
             #print(taller)
         return talleres
 
+
+def getTalleresCreatedByProfID(dniP):
+    profesor = getProfesorByID(dniP)
+
+    if profesor == None:
+        return []
+    else:
+        profesorTalleres = ProfesorTaller.objects.filter(idProfesor=profesor) 
+        talleres = []
+        for profesorTaller in profesorTalleres:
+            #print(dir(profesorTaller))
+            #print(profesorTaller.idTaller)
+            #taller=profesorTaller.idTaller
+            talleres.append(profesorTaller.idTaller)
+            #print(taller)
+        return talleres
+
 def getTalleresInscrito(alumno):
     return AlumnoTaller.objects.filter(idAlumno=alumno) 
 
@@ -60,6 +87,13 @@ def isAlumno(dniA):
     alumno=Alumno.objects.filter(dniA=dniA)
 
     return len(alumno) != 0
+
+
+def isProfesor(dniP):
+    
+    profesor=Profesor.objects.filter(dniP=dniP)
+
+    return len(profesor) != 0
 
 
 def doLogin(request):
@@ -78,7 +112,7 @@ def doLogin(request):
 
         if len(alumno) == 0:
             profesor=Profesor.objects.filter(dniP=request.user)
-            return redirect('/taller/alta')
+            return redirect('/taller/listar')
         else:
             return redirect('homepage')
 
@@ -135,7 +169,6 @@ def taller_new(request):
 def index(request):
     
     return HttpResponse("Hello, world. You're at the polls index.")
-
 
 def logout_view(request):
     logout(request)
@@ -201,29 +234,31 @@ def creartaller(request):
 
 def listataller(request):
 
-    #Recuperar todos los talleres
-    taller_list = Taller.objects.order_by('-curso')
 
-    print(taller_list)
+    if isProfesor(request.user):
+        taller_list = getTalleresCreatedByProfID(request.user)
 
-    return render(request, 'talleres/listaTaller.html',
-    {
-        "talleres_list" : taller_list,
-    })
+        print(taller_list)
+
+        return render(request, 'talleres/listaTaller.html',
+        {
+            "talleres_list" : taller_list,
+            "edicion" : True
+        })
 
 
+    else:
+        #Recuperar todos los talleres
+        taller_list = Taller.objects.order_by('-curso')
 
-def listataller(request):
+        print(taller_list)
 
-    #Recuperar todos los talleres
-    taller_list = Taller.objects.order_by('-curso')
+        return render(request, 'talleres/listaTaller.html',
+        {
+            "talleres_list" : taller_list,
+        })
 
-    print(taller_list)
 
-    return render(request, 'talleres/listaTaller.html',
-    {
-        "talleres_list" : taller_list,
-    })
 
 
 def inscribirse(request):
