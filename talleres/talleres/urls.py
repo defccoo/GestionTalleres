@@ -39,6 +39,7 @@ urlpatterns = [
     path('taller/mostrar/<int:taller_id>', views.muestraTallerConID, name='muestraTallerConID'),
     #path('polls/', include('polls.urls')),
     url('^taller/update/(?P<pk>[\w-]+)$', views.TallerUpdateView.as_view(), name='taller_update'),
+    url('^taller/delete/(?P<pk>[\w-]+)$', views.TallerDelete.as_view(), name='taller_delete'),
     path('admin/', admin.site.urls),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

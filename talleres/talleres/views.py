@@ -5,10 +5,11 @@ from .forms import TallerForm
 # Create your views here.
 
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 
 from .models import Taller, Departamento, Alumno, AlumnoTaller,Profesor,ProfesorTaller
 
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 
 
 class TallerUpdateView(UpdateView):
@@ -17,7 +18,12 @@ class TallerUpdateView(UpdateView):
     model = Taller
     fields = ('Numero', 'NombreTaller','Descripcion','NumDepartamento','nivel', 'curso','MaxAlumnos','duracion','jornada','excede','foto', 'estado')
     template_name_suffix = "_update_form"
+    success_url = reverse_lazy('listataller')
 
+
+class TallerDelete(DeleteView):
+    model = Taller
+    success_url = reverse_lazy('listataller')
 
 def getAlumnoByID(dniA):
 
@@ -129,6 +135,7 @@ def homepage(request):
         return render(request, 'talleres/homepage.html')
     else:
 
+        print(request.user)
         dniA = request.user
 
         if isAlumno(dniA):
@@ -139,13 +146,17 @@ def homepage(request):
 
             return render(request, 'talleres/homepage.html',
                 {
+                    "logeado": True,
                     "alumno" : alumno,
-                    "talleres": talleres[:3]
+                    "talleres": talleres
                 })
 
         else:
 
-            return render(request, 'talleres/homepage.html')
+            return render(request, 'talleres/homepage.html',
+            {
+            "logeado": True,
+            })
 
         #return render_to_response('homepage.html',
         #context_instance=RequestContext(request))
@@ -153,18 +164,42 @@ def homepage(request):
 
 def taller_new(request):
 
+    if request.user.is_anonymous:
+        return render(request, 'talleres/homepage.html')
+
+    dniA = request.user
+
+    if isAlumno(dniA):
+
+        alumno=getAlumnoByID(dniA)
+
+        talleres=getTalleresInscritoByAlumnoID(dniA)
+
+        return render(request, 'talleres/homepage.html',
+            {
+                "logeado": True,
+                "alumno" : alumno,
+                "talleres": talleres
+            })
+
     if request.method == "POST":
         print(request.POST)
         form = TallerForm(request.POST, request.FILES or None)
         if form.is_valid():
             taller = form.save(commit=False)
             #post.author = request.user
+            dniP = request.user
+            profesor=getProfesorByID(dniP)
             taller.save()
+            ProfesorTaller.objects.create(idProfesor=profesor, idTaller=taller)
+            
             return redirect('/listar')
 
     else:
+
         form = TallerForm()
-    return render(request, 'talleres/altataller.html', {'form': form})
+
+    return render(request, 'talleres/altataller.html', {'form': form, "logeado": True, })
 
 def index(request):
     
@@ -242,6 +277,7 @@ def listataller(request):
 
         return render(request, 'talleres/listaTaller.html',
         {
+            "logeado": True,
             "talleres_list" : taller_list,
             "edicion" : True
         })
@@ -251,12 +287,28 @@ def listataller(request):
         #Recuperar todos los talleres
         taller_list = Taller.objects.order_by('-curso')
 
-        print(taller_list)
+        if request.user.is_anonymous:
 
-        return render(request, 'talleres/listaTaller.html',
-        {
-            "talleres_list" : taller_list,
-        })
+            return render(request, 'talleres/listaTaller.html',
+            {
+                "talleres_list" : taller_list
+            })
+        else:
+
+            dniA = request.user
+
+            if isAlumno(dniA):
+
+                alumno=getAlumnoByID(dniA)
+
+                talleres=getTalleresInscritoByAlumnoID(dniA)
+
+
+            return render(request, 'talleres/listaTaller.html',
+            {
+                "talleres_list" : taller_list,
+                "talleres_list_insc": talleres,
+            })
 
 
 
@@ -278,11 +330,15 @@ def inscribirse(request):
         alumnotaller=AlumnoTaller.objects.create(idAlumno=alumno, idTaller=taller) 
         inscrito = True
 
-    return render(request, 'talleres/taller.html',
+    talleres=getTalleresInscritoByAlumnoID(alumno.dniA)
+
+    print(alumno)
+    print(talleres)
+
+    return render(request, 'talleres/homepage.html',
     {
-        "taller" : taller,
-        "inscrito" : inscrito,
-        "alumno" : True
+        "talleres" : talleres,
+        "alumno" : alumno
     })
 
 

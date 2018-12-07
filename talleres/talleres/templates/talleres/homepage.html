@@ -50,6 +50,7 @@
         </a>
     </div>
   </div>
+  {% if not user.is_authenticated %}
     <!-- Container  -->
     <div id="#demo" class="container-fluid text-center">
       <h3 class="">BIENVENIDOS</h3>
@@ -94,10 +95,11 @@
         </div>
       </div>
     </div>
-    
+    {% endif %}
     <!-- Container (Talleres Section) -->
     <div id="#demo" class="bg-1">
       <div class="container-fluid">
+
         <h3 class="text-center">PROXIMOS TALLERES</h3>
         <p class="text-center">Lorem ipsum we'll play you some music.<br> Recuerda Inscribirte pronto!</p>
         <ul class="list-group">
@@ -109,55 +111,63 @@
         <div class="row text-center">
 
           {% if alumno %}
+          <h3 class="text-center">MIS TALLERES</h3>
+            {% for taller in talleres %}
 
-          {% for taller in talleres %}
-
-           <div class="col-md-4 col-sm-4">
-            <div class="thumbnail">
-              <img src="media/{{ taller.foto }}" alt="foto Taller" width="400" height="300">
-              <p><strong>{{ taller.NombreTaller }}</strong></p>
-              <p>{{ taller.Descripcion }}</p>
-              <a href="/taller/mostrar/{{ taller.Numero }}"> Mas info </a>
-              <!--<button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>-->
-              <form action="{% url 'inscribir' %}" method="post">
-              {% csrf_token %}        
-                <input type="hidden" id="idTaller" name="idTaller" value="{{ taller.Numero }}">    
-                <input class="btn pull-right" type="submit" value="Dar de baja">
-              </form>
+             <div class="col-md-4 col-sm-4">
+              <div class="thumbnail">
+                <img src="../media/{{ taller.foto }}" alt="foto Taller" width="400" height="300">
+                <p><strong>{{ taller.NombreTaller }}</strong></p>
+                <p>{{ taller.Descripcion }}</p>
+                <a href="/taller/mostrar/{{ taller.Numero }}"> Mas info </a>
+                <!--<button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>-->
+                <form action="{% url 'inscribir' %}" method="post">
+                {% csrf_token %}        
+                  <input type="hidden" id="idTaller" name="idTaller" value="{{ taller.Numero }}">    
+                  <input class="btn pull-right" type="submit" value="Dar de baja">
+                </form>
+              </div>
             </div>
-          </div>
 
-          {% endfor %}
+            {% endfor %}
 
 
            {% else %} 
 
-        <div class="col-md-4 col-sm-4">
-            <div class="thumbnail">
-              <img src="../static/talleres/images/220px-Origami_Grulla.jpg" alt="Paris" width="400" height="300">
-              <p><strong>Origami</strong></p>
-              <p>Friday 27 November 2018</p>
-              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+              <div class="col-md-4 col-sm-4">
+                  <div class="thumbnail">
+                    <img src="../static/talleres/images/220px-Origami_Grulla.jpg" alt="Paris" width="400" height="300">
+                    <p><strong>Origami</strong></p>
+                    <p>Friday 27 November 2018</p>
+                    <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                  <div class="thumbnail">
+                    <img src="../static/talleres/images/futbol_220.jpg" alt="New York" width="400" height="300">
+                    <p><strong>Campeonato Futbol</strong></p>
+                    <p>Saturday 28 November 2018</p>
+                    <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                  <div class="thumbnail">
+                    <img src="../static/talleres/images/robot_220.jpg" alt="San Francisco" width="400" height="300">
+                    <p><strong>Robotica</strong></p>
+                    <p>Sunday 29 November 2018</p>
+                    <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+                  </div>
+                </div>
+                 <div class="col-md-4 col-sm-4">
+                  <div class="thumbnail">
+                    <img src="../static/talleres/images/robot_220.jpg" alt="San Francisco" width="400" height="300">
+                    <p><strong>Robotica</strong></p>
+                    <p>Sunday 29 November 2018</p>
+                    <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="thumbnail">
-              <img src="../static/talleres/images/futbol_220.jpg" alt="New York" width="400" height="300">
-              <p><strong>Campeonato Futbol</strong></p>
-              <p>Saturday 28 November 2018</p>
-              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="thumbnail">
-              <img src="../static/talleres/images/robot_220.jpg" alt="San Francisco" width="400" height="300">
-              <p><strong>Robotica</strong></p>
-              <p>Sunday 29 November 2018</p>
-              <button class="btn" data-toggle="modal" data-target="#myModal">Logeate</button>
-            </div>
-          </div>
-        </div>
-      </div>
            {% endif %}
 
 <!-- 

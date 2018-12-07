@@ -3,25 +3,97 @@
 
   {% block content %}
     
-      
+  <div id="hueco" style="height: 50px;">
+  </div>
     <!-- Container (The Lsta Section) -->
     <div id="lista" class="container text-center">
+
+
+
+
+
+
       <h3> Lista talleres </h3>
 
-      <div>
-        <ul>
-         <!--  <li><a href="#myPage">HOME</a></li> -->
-         {% for taller in talleres_list %}
-          {% if edicion %}
-            <li style="list-style-type: none"><a href="/taller/update/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a> <img src='../media{{ taller.foto }}' width="5%" height="5%"></li>
-          {% else %}
-            <li  style="list-style-type: none"><a href="/taller/mostrar/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a> <img src='../media{{ taller.foto }}' width="5%" height="5%"></li>
-          {% endif %}
-         {% endfor %}
-       </ul>
-            </div>
+    <table class="well table text-center">
+  <thead>
+    <tr>
+      <th class="text-center align-middle" scope="col">Nombre</th>
+      <th class="text-center align-middle" scope="col">Logo</th>
+      {% if edicion %}
+      <th class="text-center align-middle" scope="col">Eliminar</th>
+      {% endif %}
+    </tr>
+  </thead>
 
-      
+           <!--  <li><a href="#myPage">HOME</a></li> -->
+        {% for taller in talleres_list %}
+        
+        {% if edicion %}
+
+        <tr>
+          <td class="text-center align-middle" scope="col"><a href="/taller/update/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a></td>
+          <td scope="col"><img src='../media/{{ taller.foto }}' width="50px" height="50px"></td>
+          <td scope="col"><a href="/taller/delete/{{ taller.Numero }}" class="glyphicon glyphicon-remove"></a></td>
+        </tr>
+
+        {% else %}
+        <tr>
+        <td scope="col"><a href="/taller/mostrar/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a> </td>
+        <td scope="col"><img src='../media/{{ taller.foto }}' width="50px" height="50px"></td>
+        </tr>
+
+        {% endif %}
+
+
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+        </tr>
+        </thead>
+
+
+
+        <h3> Mis talleres </h3>
+
+        <table class="well table text-center">
+        <thead>
+        <tr>
+        <th class="text-center align-middle" scope="col">Nombre</th>
+        <th class="text-center align-middle" scope="col">Logo</th>
+        {% if edicion %}
+        <th class="text-center align-middle" scope="col">Eliminar</th>
+        {% endif %}
+        </tr>
+        </thead>
+
+           <!--  <li><a href="#myPage">HOME</a></li> -->
+        {% for taller in talleres_list_insc %}
+
+       
+        <tr>
+        <td scope="col"><a href="/taller/mostrar/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a> </td>
+        <td scope="col"><img src='../media/{{ taller.foto }}' width="50px" height="50px"></td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+
+
+
+            {% if edicion %}
+            <form action="{% url 'altataller' %}" method="post">
+              {% csrf_token %}
+              <div class="col-sm-6">
+                <p><button type="submit" class="btn btn-success btn-lg btn-block">Nuevo taller...<span class=""></span></button></p>
+              </div>
+            <form>
+          {% endif %}
     </div>
 
     {% endblock content %}

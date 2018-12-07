@@ -54,16 +54,14 @@
       
     </div>
     <div class="col-md-3 col-xs-6">
-      <form action="{% url 'logout' %}" method="post">
-      {% csrf_token %} 
+      <!-- <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}  -->
      <!-- <button class="btn btn-default pull-right logout">
       <i class="glyphicon glyphicon-log-out"></i>                       
       <input type="submit" value="Log Out">
       </button> -->
-      <button type="submit" class="btn pull-right">Log out 
-          <span class="glyphicon glyphicon-log-out"></span>
-        </button>
-      </form>
+      <a href="/logout/" class="btn pull-right">Log Out <span class="glyphicon glyphicon-log-out"></span></a>
+      <!-- </form> -->
       </div>
     {% endif %}
 

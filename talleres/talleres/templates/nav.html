@@ -17,16 +17,19 @@
         <li><a href="/">INICIO</a></li>
         <li><a href="#contact">CONTACTO</a></li>
         <li><a href="/local/">LOCALIZACION</a></li>
-        <li><a href="/access/">ACCESO</a></li>
-        <li class="dropdown">
+        <li><a href="/listar/">TALLERES</a></li>
+       <!--  <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVICIOS
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">ACTIVIDADES</a></li>
-            <li><a href="#">FOTOS</a></li>
-            <li><a href="#">CONCURSO</a></li> 
+            <li><a href="/listar/">TALLERES</a></li>
+            <!-- <li><a href="#">FOTOS</a></li>
+            <li><a href="#">CONCURSO</a></li>  
           </ul>
-        </li>
+        </li> -->
+        {% if not user.is_authenticated %}
+          <li><a href="/access/">ACCESO</a></li>
+        {% endif %}
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
     </div>
