@@ -23,13 +23,14 @@ from . import views
 urlpatterns = [
     #path('', views.index, name='index'),
     path('', views.homepage, name='homepage'),
+    path('inicio/', views.homepage, name='homepage'),
     path('principal/', views.doLogin, name='login'),
     path('access/', views.acceso, name='acceso'),
     path('local/', views.sitio, name='sitio'),
     path('logout/', views.logout_view, name='logout'),
     path('inscribir/', views.inscribirse, name='inscribir'),
-
-    #path('taller/mostrar', views.muestraTaller, name='muestraTaller'),
+    path('error/', views.error_view, name='error_log'),
+    path('contact/', views.contacto, name='contact'),
     path('listar/', views.listataller, name='listataller'),
     path('taller/listar', views.listataller, name='listataller'),
     path('taller/alta', views.taller_new, name='altataller'),
@@ -37,7 +38,7 @@ urlpatterns = [
 
     #Mostrar lista taller...leer todos los talleres y mostrarlos con los enlaces a /taller/mostrar/taller_id
     path('taller/mostrar/<int:taller_id>', views.muestraTallerConID, name='muestraTallerConID'),
-    #path('polls/', include('polls.urls')),
+   
     url('^taller/update/(?P<pk>[\w-]+)$', views.TallerUpdateView.as_view(), name='taller_update'),
     url('^taller/delete/(?P<pk>[\w-]+)$', views.TallerDelete.as_view(), name='taller_delete'),
     path('admin/', admin.site.urls),

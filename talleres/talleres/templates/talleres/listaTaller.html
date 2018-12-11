@@ -3,15 +3,10 @@
 
   {% block content %}
     
-  <div id="hueco" style="height: 50px;">
-  </div>
+  <div id="hueco" style="height: 50px;">  </div>
+  <div id="myPage"></div>
     <!-- Container (The Lsta Section) -->
     <div id="lista" class="container text-center">
-
-
-
-
-
 
       <h3> Lista talleres </h3>
 
@@ -26,7 +21,6 @@
     </tr>
   </thead>
 
-           <!--  <li><a href="#myPage">HOME</a></li> -->
         {% for taller in talleres_list %}
         
         {% if edicion %}
@@ -45,7 +39,6 @@
 
         {% endif %}
 
-
         {% endfor %}
 
         </tbody>
@@ -53,11 +46,7 @@
 
         </tr>
         </thead>
-
-
-
         <h3> Mis talleres </h3>
-
         <table class="well table text-center">
         <thead>
         <tr>
@@ -69,10 +58,7 @@
         </tr>
         </thead>
 
-           <!--  <li><a href="#myPage">HOME</a></li> -->
-        {% for taller in talleres_list_insc %}
-
-       
+        {% for taller in talleres_list_insc %}    
         <tr>
         <td scope="col"><a href="/taller/mostrar/{{ taller.Numero }}"> {{ taller.NombreTaller }}</a> </td>
         <td scope="col"><img src='../media/{{ taller.foto }}' width="50px" height="50px"></td>
@@ -82,14 +68,10 @@
 
         </tbody>
         </table>
-
-
-
-
             {% if edicion %}
             <form action="{% url 'altataller' %}" method="post">
               {% csrf_token %}
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-6">
                 <p><button type="submit" class="btn btn-success btn-lg btn-block">Nuevo taller...<span class=""></span></button></p>
               </div>
             <form>

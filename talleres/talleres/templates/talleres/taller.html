@@ -19,7 +19,7 @@
             <form action="{% url 'inscribir' %}" method="post">
             {% csrf_token %}        
             <input type="hidden" id="idTaller" name="idTaller" value="{{ taller.Numero }}">    
-            <input class="btn" type="submit" value="Dar de baja">
+            <p><input class="btn" type="submit" value="Dar de baja"></p>
             </form>
 
           {% else %} 
@@ -27,13 +27,12 @@
           <form action="{% url 'inscribir' %}" method="post">
           {% csrf_token %}   
           <input type="hidden" id="idTaller" name="idTaller" value="{{ taller.Numero }}">
-          <input class="btn" type="submit" value="Inscribirse">
+          <p><input class="btn" type="submit" value="Inscribirse"></p>
           </form>
 
           {% endif %}
 
         {% endif %}
     </div>
-
 
     {% endblock content %}

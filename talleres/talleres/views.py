@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 from .forms import TallerForm
 # Create your views here.
@@ -126,7 +127,11 @@ def doLogin(request):
     else:
         print("No autenticado")
         # No backend authenticated the credentials
-    return render(request, 'talleres/homepage.html')
+        
+    messages.error(request,'username or password not correct')
+    return render(request, 'talleres/error_login.html')
+   
+    
 
 def homepage(request):
 
@@ -157,9 +162,6 @@ def homepage(request):
             {
             "logeado": True,
             })
-
-        #return render_to_response('homepage.html',
-        #context_instance=RequestContext(request))
 
 
 def taller_new(request):
@@ -203,17 +205,28 @@ def taller_new(request):
 
 def index(request):
     
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Hello, world. You're at the index.")
 
 def logout_view(request):
     logout(request)
     return render(request, 'talleres/homepage.html')
 
-def acceso(request):
+def error_view(request):
+    error(request)
     return render(request, 'talleres/login.html')
+
+def acceso(request):
+    
+    return render(request, 'talleres/login.html')
+
+def contacto(request):
+    return render(request, 'talleres/contact.html')
 
 def sitio(request):
     return render(request, 'talleres/local.html')
+
+def inicio(request):
+    return render(request, 'talleres/homepage.html')
 
 def muestraTaller(request):
 
@@ -229,27 +242,9 @@ def muestraTaller(request):
 
 def creartaller(request):
 
-
     print(request.POST.get('Descripcion', ''))
-
-
-    """
-    idTaller = models.IntegerField(primary_key=True)
-    descrip = models.CharField(max_length=150)
-    idDepart = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    nivel = models.CharField(max_length=50)
-    curso = models.IntegerField()
-    maxAlum = models.IntegerField()
-    duracion = models.IntegerField()
-    jornada = models.IntegerField()
-    excede = models.IntegerField()
-    idAlumnoTaller = models.ManyToManyField(Alumno, through='AlumnoTaller')
-
-    """
-
     print("Hello")
     Descricion = request.POST.get('Descripcion', '')
-    print("Revisar ESTO!!!")
     Numero = 1
     departamento = get_object_or_404(Departamento, pk=Numero)
     nivel = (request.POST.get('nivel', ''))
@@ -258,7 +253,6 @@ def creartaller(request):
     duracion = int(request.POST.get('duracion', ''))
     jornada = int(request.POST.get('jornada', ''))
     excede = int(request.POST.get('excede', ''))
-
 
     #El departamento sera el del profesor que ha creado el taller...  
     #

@@ -2,8 +2,7 @@
 {% block title %} Alta Talleres  {% endblock title%}
 
   {% block content %}
-    <div id="hueco" style="height: 50px;">
-  </div>
+    <div id="hueco" style="height: 50px;"> </div>
         <!-- Container (The Alta Section) -->
         <div id="alta" class="container text-center">
         
@@ -17,49 +16,10 @@
           <button type="submit" class="save btn btn-default">Guardar</button>
           
         </form> 
-    <!-- <input type="submit" value="Submit" /> -->
-
+    
         </div>       
-        <!-- <div class="row">
-            <div class="col-md-6 ">
-            <div class="col-md-4 ">
-            <button type="button" class="btn btn-success btn-lg btn-block">Alta</button>
-            </div>
-            <div  class="col-md-4 ">
-                    <p><button type="button" class="btn btn-primary btn-lg btn-block">Modificar</button></p>
-            </div>
-            <div  class="col-md-4 ">
-                    <button type="button" class="btn btn-danger btn-lg btn-block">Eliminar</button>
-                </div>
-            </div>
-         </div> -->
+  >
         </div>
         </div> 
     
-<!-- 
-    
-      <h3> Alta talleres </h3>
-      <form class="form-signin" action="/taller/crear" method="post">{% csrf_token %}
-      Nombre: <input class="form-control" id="nombreT" name="nombreT" placeholder="" type="text">
-      Descript: <input class="form-control" id="descrip" name="descrip" placeholder="" type="text">
-
-      nivel: <input class="form-control" id="nivel" name="nivel" placeholder="" type="text">
-
-      curso: <input class="form-control" id="curso" name="curso" placeholder="" type="number">
-      maxAlum: <input class="form-control" id="maxAlum" name="maxAlum" placeholder="" type="number">
-      duracion:<input class="form-control" id="duracion" name="duracion" placeholder="" type="number">
-      jornada:<input class="form-control" id="jornada" name="jornada" placeholder="" type="number">
-      excede:<input class="form-control" id="excede" name="excede" placeholder="" type="number">
-      depart: 
-      <select>
-      {% for depart in depart_list %}
-       <option value="{{ depart.idDepart }}"> {{ depart.nombre }}</option>
-      {% endfor %}
-    </select>
-    <br>
-     foto: <input class="form-control" id="foto" name="foto" placeholder="" type="file">
-    
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
-    </form>
--->
     {% endblock content %}

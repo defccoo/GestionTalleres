@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} Contacto  {% endblock title%}
+
+  {% block content %}
+    <div id="hueco" style="height: 50px;"> </div>
+    <section id="contact">                      
+        <div class="container-fluid">
+                <div id="myPage"></div>
+                <!-- Container (The Alta Section) -->
+                <div id="login" class="container text-center">
+                  <h3>CONTACTO</h3>
+                  <p><em>Danos tus datos !</em></p>
+                  <p>Grape dulse rutabaga lentil gram kakadu plum water spinach cabbage lotus root.</p>
+                </div>
+            <form>
+                <div class="form-group">
+                <label for="yourName" class="control-label">Nombre</label>
+                <input type="text" class="form-control" id="yourName"
+                placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                <label for="yourEmail" class="control-label">Direccion email</label>
+                <input type="email" class="form-control" id="yourEmail"
+                placeholder="Tu email">
+                </div>
+            <div class="form-group">
+            <label for="yourComments" class="control-label">Cuentanos</label>
+            <textarea class="form-control" id="yourComments" placeholder="Tus comentarios" rows="3"></textarea>
+            </div>
+            <div class="checkbox">
+            <label><input type="checkbox">Suscribeme !!!</label>
+            </div>
+            <div class="container text-center"><p><button type="submit" class="btn btn-primary">Enviar</button></p></div>
+            
+            </form>
+
+          </div>
+
+          </section>
+    
+    {% endblock content %}
+    {% block extrafooter %}
+ 
+
+    {% endblock extrafooter %}
+
+
+
+
+

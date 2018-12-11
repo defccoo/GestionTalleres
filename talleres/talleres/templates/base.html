@@ -7,28 +7,17 @@
       {% load static %}
       <link rel="stylesheet" href="{% static 'talleres/bootstrap.min.css' %}">
       <link rel="stylesheet" href="{% static 'talleres/principal.css' %}">
+      <link rel="stylesheet" href="{% static 'talleres/jquery.mobile-1.4.5.min.css' %}">
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
       
-      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
-      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
-      <!--Latest compiled and minified CSS 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<!- jQuery library 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!- Popper JS 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<!- Latest compiled JavaScript
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
-
       {% load staticfiles %}
     <script src="{% static "talleres/js/jquery-3.2.1.min.js" %}"></script>
     <script src="{% static "talleres/js/bootstrap.min.js" %}"></script>
     <script src="{% static "talleres/js/userValidation.js" %}"></script>
+    <script src="{% static "talleres/js/jquery.mobile-1.4.5.min.js" %}"></script>
+    <script src="{% static "talleres/js/jquery-1.11.1.min.js" %}"></script>
 
-     <!-- <script src="jq/jquery-3.2.1.min.js"></script> -->
-     <!--  <script src="js/bootstrap.min.js"></script> -->
       <style>
       
       </style>
@@ -48,19 +37,16 @@
             </a><br>
             <p> &copy; Quintin Macian</p>
             </div>
+            <section>    
     <div class="col-md-3 col-md-pull-6 col-xs-6">
+        <p><a href="/inicio/" class=" btn pull-left ui-btn-inline"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Inicio</a></p>
     {% if user.username %}
-      <p class="navbar-text navbar-left">Logado como  {{ user.username }}</p>
-      
+    <div><p class="navbar-text navbar-left">Usuario:&nbsp;{{ user.username }}</p></div>
+        
     </div>
+  </section>
     <div class="col-md-3 col-xs-6">
-      <!-- <form action="{% url 'logout' %}" method="post">
-      {% csrf_token %}  -->
-     <!-- <button class="btn btn-default pull-right logout">
-      <i class="glyphicon glyphicon-log-out"></i>                       
-      <input type="submit" value="Log Out">
-      </button> -->
-      <a href="/logout/" class="btn pull-right">Log Out <span class="glyphicon glyphicon-log-out"></span></a>
+       <a href="/logout/" class="btn pull-right">Log Out <span class="glyphicon glyphicon-log-out"></span></a>
       <!-- </form> -->
       </div>
     {% endif %}
