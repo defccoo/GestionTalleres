@@ -22,6 +22,8 @@ class TallerUpdateView(UpdateView):
     success_url = reverse_lazy('listataller')
 
 
+
+
 class TallerDelete(DeleteView):
     model = Taller
     success_url = reverse_lazy('listataller')
@@ -297,10 +299,26 @@ def listataller(request):
 
                 talleres=getTalleresInscritoByAlumnoID(dniA)
 
+                taller_final_list = []
+
+                for taller in taller_list:
+                    included = False
+                    for mi_taller in talleres:
+                    
+                        if mi_taller == taller:
+                            included = True
+                            break
+                        else:
+                            print(taller)
+
+                    if not included:
+                        taller_final_list.append(taller)
+
+
 
             return render(request, 'talleres/listaTaller.html',
             {
-                "talleres_list" : taller_list,
+                "talleres_list" : taller_final_list,
                 "talleres_list_insc": talleres,
             })
 
@@ -342,7 +360,7 @@ def muestraTallerConID(request, taller_id):
 
     alumnos=Alumno.objects.filter(dniA=request.user)
 
-    if request.user.is_anonymous or len(alumnos) == 0:
+    if request.user.is_anonymous:
 
         return render(request, 'talleres/taller.html',
         {
@@ -351,23 +369,57 @@ def muestraTallerConID(request, taller_id):
 
         })
 
+
+
     else:
 
-        alumno=alumnos[0]
+        if len(alumnos) == 0:
 
-        lista_alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller_id) 
+            profesor = Profesor.objects.filter(dniP=request.user)
 
-        inscrito = False
-        if lista_alumnotaller:
-            inscrito = True
+            profesorTaller = ProfesorTaller.objects.filter(idTaller=taller_id, idProfesor=profesor[0])
 
-        print(lista_alumnotaller)
+            if len(profesorTaller) != 0:
 
-        print(taller.Descripcion)
+                lista_alumno_taller = AlumnoTaller.objects.filter(idTaller=taller_id) 
 
-        return render(request, 'talleres/taller.html',
-        {
-            "taller" : taller,
-            "inscrito" : inscrito,
-            "alumno": True
-        })
+                lista_alumnos = []
+
+                for alumno_taller in lista_alumno_taller:
+                    alumno = Alumno.objects.filter(dniA=alumno_taller.idAlumno.pk)
+                    lista_alumnos.append(alumno[0])
+
+                return render(request, 'talleres/taller.html',
+                {
+                    "taller" : taller,
+                    "lista_alumnos": lista_alumnos,
+                    "inscrito" : False,
+                    "alumno": False
+                })
+
+            else:
+
+                return render(request, 'talleres/taller.html',
+                {
+                    "taller" : taller,
+                    "inscrito" : False,
+                    "alumno": False
+                })
+
+        else:
+
+            alumno=alumnos[0]
+
+            lista_alumnotaller=AlumnoTaller.objects.filter(idAlumno=alumno, idTaller=taller_id) 
+
+            inscrito = False
+            if lista_alumnotaller:
+                inscrito = True
+
+
+            return render(request, 'talleres/taller.html',
+            {
+                "taller" : taller,
+                "inscrito" : inscrito,
+                "alumno": True
+            })

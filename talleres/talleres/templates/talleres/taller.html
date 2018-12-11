@@ -11,6 +11,31 @@
       
       <p>Descripción:</p>
       <p>{{ taller.Descripcion }}</p>
+
+      {% if lista_alumnos %}
+      <div id="lista" class="container text-center">
+
+      <h3> Lista Alumnos </h3>
+
+        <table class="well table text-center">
+      <thead>
+        <tr>
+          <th class="text-center align-middle" scope="col">Nombre</th>
+        </tr>
+      </thead>
+
+      {% for alumno in lista_alumnos %}
+        <tr>
+        <td scope="col">{{ alumno.nombre }}</a> </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+        </tr>
+        </thead>
+      {% endif %}
       
        {% if alumno%}
 

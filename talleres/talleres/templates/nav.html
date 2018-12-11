@@ -30,6 +30,9 @@
         {% if not user.is_authenticated %}
           <li><a href="/access/">ACCESO</a></li>
         {% endif %}
+        {% if user.is_authenticated %}
+          <li><a>USER: {{ user.email }}</a></li>
+        {% endif %}
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
     </div>
